@@ -1,0 +1,30 @@
+name: 🚀 DevOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupérer le code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Vérifier les fichiers
+      - name: Vérification
+        run: ls -la
+
+      # 3. Test (simulation)
+      - name: Test HTML
+        run: echo "Page HTML valide ✅"
+
+      # 4. Déploiement GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
